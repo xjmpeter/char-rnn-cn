@@ -5,7 +5,7 @@ import time
 import numpy as np
 import tensorflow as tf
 from tensorflow.contrib.tensorboard.plugins import projector
-from tensorflow.contrib.rnn import core_rnn_cell as rnn_cell
+import tensorflow.contrib.rnn  as rnn_cell
 from tensorflow.contrib import legacy_seq2seq as seq2seq
 
 
@@ -184,7 +184,7 @@ def sample(data, model, args):
         saver.restore(sess, ckpt)
 
         # initial phrase to warm RNN
-        prime = u'你要离开我知道很简单'
+        prime = u'而我在等你'
         state = sess.run(model.cell.zero_state(1, tf.float32))
 
         for word in prime[:-1]:
